@@ -10,6 +10,9 @@ dotenv.config();
 app.set("views", "./views");
 app.set("view engine", "pug");
 
+// sử dụng file tĩnh
+app.use(express.static("public"));
+
 // connect database
 database.connect();
 
