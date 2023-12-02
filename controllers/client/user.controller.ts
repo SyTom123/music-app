@@ -26,3 +26,34 @@ export const registerPost = async (req: Request, res:Response) => {
     await user.save();
     res.redirect("/user/login");
 }
+//[GET]/users/login
+export const login = async (req: Request, res:Response) => {
+    res.render("client/pages/users/login.pug", {
+        pageTitle: 'Trang đăng nhập',
+    }
+    )
+}
+//[POST]/users/login
+export const loginPost = async (req: Request, res:Response) => {
+    const user = await User.findOne({
+        email: req.body.email
+    })
+    if(!user) {
+        console.log("User không tồn tại!");
+        res.redirect('back');
+        return;
+    }
+    if(md5(req.body.password ) != user.password ) {
+        console.log("Sai mật khẩu!");
+        res.redirect('back');
+        return;
+    }
+    if(user.status == "inactive") {
+        console.log("Tài khoản đang bị khóa!");
+        res.redirect("back");
+        return;
+    }
+    console.log("Đăng nhập thành công!");
+    res.cookie("tokenUser", user.token);
+    res.redirect("/topics");
+}

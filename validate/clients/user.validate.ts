@@ -23,3 +23,16 @@ export const registerPost = (req: Request, res: Response, next: NextFunction) =>
     }
     next();
 }
+export const loginPost = (req: Request, res: Response, next: NextFunction) => {
+    if(!req.body.email) {
+        res.redirect("back");
+        console.log("Không được để trống trường email");
+        return;
+    }
+    if(!req.body.password) {
+        res.redirect("back");
+        console.log("Không được để trống trường password");
+        return;
+    }
+    next();
+}
