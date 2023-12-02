@@ -1,3 +1,32 @@
+// Hiển thị mật khẩu
+const formCheckbox = document.querySelector("[form-checkbox]");
+
+if(formCheckbox){
+    const inputPasswords = formCheckbox.querySelectorAll("input[type='password']");
+    const inputCheckbox = formCheckbox.querySelector("input[type='checkbox']");
+
+    inputCheckbox.addEventListener("click", ()=> {
+        if(inputCheckbox.checked){
+            inputPasswords.forEach(input => {
+                input.type = "text"
+            })
+        }
+        else {
+            inputPasswords.forEach(input => {
+                input.type = "password"
+            })
+        }
+    })
+    inputPasswords.forEach(input => {
+        input.addEventListener("copy", (e)=> {
+            e.preventDefault();
+        })
+    })
+}
+// Hết Hiển thị mật khẩu
+
+// AP Player
+const aplayer = document.querySelector("#aplayer");
 if (aplayer) {
     let dataSong = aplayer.getAttribute("data-song");
     dataSong = JSON.parse(dataSong);
@@ -29,7 +58,7 @@ if (aplayer) {
     })
 
 }
-//AP Player
+//End AP Player
 // Button like
 const buttonLike = document.querySelector("[button-like]");
 if(buttonLike){
