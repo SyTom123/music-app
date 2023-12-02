@@ -21,11 +21,12 @@ export const registerPost = async (req: Request, res:Response) => {
         return;
     }
     req.body.password = md5(req.body.password);
-    req.body.token = generateRandomString(30);
+    req.body.tokenUser = generateRandomString(30);
     const user = new User(req.body);
     await user.save();
     res.redirect("/user/login");
 }
+
 //[GET]/users/login
 export const login = async (req: Request, res:Response) => {
     res.render("client/pages/users/login.pug", {
@@ -54,6 +55,11 @@ export const loginPost = async (req: Request, res:Response) => {
         return;
     }
     console.log("Đăng nhập thành công!");
-    res.cookie("tokenUser", user.token);
+    res.cookie("tokenUser", user.tokenUser);
+    res.redirect("/topics");
+}
+//[GET]/users/logout
+export const logout = async (req: Request, res:Response) => {
+    res.clearCookie("tokenUser");
     res.redirect("/topics");
 }

@@ -3,7 +3,7 @@ const userSchema = new mongoose.Schema({
     fullName: String,
     email: String,
     password: String,
-    token: String,
+    tokenUser: String,
     status: {
         type: String,
         default: "active"

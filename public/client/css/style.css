@@ -8,7 +8,7 @@
     max-width: 100%;
   
 }
-.header .inner-menu > ul {
+.header .inner-menu > ul, .header .inner-auth ul {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -17,7 +17,7 @@
     justify-content: flex-end;
     flex-wrap: wrap;
 }
-.header .inner-menu > ul > li {
+.header .inner-menu > ul > li, .header .inner-auth ul li {
     margin-left: 20px;
 }
 /* End Header */
